@@ -1,54 +1,54 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import { Box, Paper, TextField, Button, Typography } from '@mui/material';
 
-const App = () => {
+const ChatPage = () => {
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
-  const messagesEndRef = useRef(null);
+  const [newMessage, setNewMessage] = useState('');
 
-  useEffect(() => {
-    // Scroll to the latest message when messages are updated
-    scrollToBottom();
-  }, [messages]);
-
-  const sendMessage = () => {
-    if (inputMessage.trim() !== '') {
-      setMessages([...messages, { text: inputMessage, sender: 'user', timestamp: new Date() }]);
-      setInputMessage('');
+  const handleSendMessage = () => {
+    if (newMessage.trim() !== '') {
+      setMessages([...messages, { text: newMessage }]);
+      setNewMessage('');
     }
   };
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <div className="chat-container">
-      <div className="chat-messages">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            <div className="message-text">{message.text}</div>
-            <div className="message-timestamp">{formatTimestamp(message.timestamp)}</div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-      <div className="input-area">
-        <input
-          type="text"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          placeholder="Type a message..."
-        />
-        <button onClick={sendMessage}>Send</button>
-      </div>
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        '& > :not(style)': {
+          m: 1,
+          width: '400px',
+          height: '620px',
+        },
+      }}
+    >
+      <Paper elevation={3} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Paper elevation={3} sx={{ width: '100%', height: '90%', overflowY: 'auto', padding: '10px' }}>
+          {messages.map((message, index) => (
+            <Typography key={index} variant="body1" gutterBottom>
+              {message.text}
+            </Typography>
+          ))}
+        </Paper>
+        <Box sx={{ width: '70%', mt: 2 }}>
+          <TextField
+            id="filled-basic"
+            label="Type a message"
+            variant="filled"
+            fullWidth
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+          />
+        </Box>
+        <Button variant="contained" color="primary" onClick={handleSendMessage} sx={{ mt: 2 }}>
+          Send
+        </Button>
+      </Paper>
+    </Box>
   );
 };
 
-const formatTimestamp = (timestamp) => {
-  const options = { hour: 'numeric', minute: 'numeric' };
-  return new Intl.DateTimeFormat('en-US', options).format(timestamp);
-};
-
-export default App;
+export default ChatPage;
