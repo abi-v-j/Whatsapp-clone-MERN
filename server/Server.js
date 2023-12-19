@@ -10,13 +10,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-connectDB()
+const chatRoute = require('./crud/Chat')
+app.use('/chat', chatRoute)
+
+
 
 
 
 
 
 app.listen(port, () => {
-    console.log("Server is Running");
-  });
-  
+  connectDB().then(() => {
+    console.log('Server is Running')
+  })
+});
+
