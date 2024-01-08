@@ -1,20 +1,35 @@
-import express from 'express'
-import { createServer } from 'http'
-import { Server } from 'socket.io'
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import MongoDB from "./Config/MongoDb.js";
+import Socket from "./Socket/Socket.js";
+import userRoutes from "./CRUD/User.js";
+import Cors from "cors";
+import BodyParser from "body-parser";
 
-const app = express()
-const httpServer = createServer(app)
+const PORT = 5000;
+
+const app = express();
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
-   cors: {
-      origin: 'http://localhost:3001',
-   },
-})
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+app.use(Cors());
+app.use(BodyParser.json());
+app.use(BodyParser.urlencoded({ extended: true }));
 
-io.on('connection', (socket) => {
-   socket.on('hello', (arg) => {
-      console.log(arg) // world
-      socket.broadcast.emit("hello",arg);
-    })
-})
 
-httpServer.listen(5000)
+
+
+
+app.use("/user", userRoutes);
+
+io.on("connection", Socket);
+
+httpServer.listen(PORT, () => {
+  MongoDB().then(() => {
+    console.log("server is running ");
+  });
+});

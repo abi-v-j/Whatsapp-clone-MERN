@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import '../env.js'
+import '../Env.js'
 
 const db =  process.env.MOGOOSE_URL
 

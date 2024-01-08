@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Main from './Components/Main'
 // import Navbar from './Components/Navbar'
 import Login from './Pages/Login'
+import Registration from './Pages/Registraion'
 
 const App = () => {
    return (
@@ -16,6 +17,10 @@ const App = () => {
               <Route
             path=''
             element={<Login />}
+            />
+                <Route
+            path='/Registration'
+            element={<Registration />}
             />
             
       </Routes>
