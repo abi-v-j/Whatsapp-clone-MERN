@@ -84,7 +84,7 @@ const Registration = () => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on('fromServer-checkUsername', () => setCheck(false));
+    socket.on('fromServer-checkUsername', (checkdata) => console.log(checkdata));
 
 
 
