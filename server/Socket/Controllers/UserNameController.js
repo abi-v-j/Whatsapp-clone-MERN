@@ -3,7 +3,6 @@ import BaseController from "./BaseController.js";
 
 export default class TypingController extends BaseController {
   CheckUserName = async ({ userName }) => {
-    console.log(userName);
     const userData = await User.findOne({ userName });
 
     if (userData) {

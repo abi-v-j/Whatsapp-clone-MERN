@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   FormControl,
   IconButton,
@@ -11,18 +10,25 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
+import Button from "../../Utilities/ButtonUtility";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
-import {SetSocket} from '../../UseContext/SocketContext'
-
-
+import { SetSocket } from "../../UseContext/SocketContext";
+import {
+  RegistrationButtonStyle,
+  RegistrationInnerBox,
+  RegistrationMainBox,
+  RegistrationMainCard,
+  RegistrationTextButtonBox,
+  RegistrationTextFieldBox,
+} from "../GuestStyle";
 
 const Registration = () => {
-  const {socket} = useContext(SetSocket)
-  
+  const { socket } = useContext(SetSocket);
+
   const navigate = useNavigate();
 
   const [confirmshowPassword, setConfirmShowPassword] = useState(false);
@@ -34,6 +40,7 @@ const Registration = () => {
   const [check, setCheck] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const confirmHandleClickShowPassword = () =>
     setConfirmShowPassword((show) => !show);
 
@@ -48,9 +55,7 @@ const Registration = () => {
   const handleUsername = (event) => {
     setUserName(event.target.value);
     const userName = event.target.value;
-    socket.emit('toServer-checkUsername', { userName})
-
-   
+    socket.emit("toServer-checkUsername", { userName });
   };
 
   const addData = (event) => {
@@ -62,8 +67,8 @@ const Registration = () => {
     }
 
     if (check) {
-      alert("Username taken.Please choose another")
-      return
+      alert("Username taken.Please choose another");
+      return;
     }
 
     const requestData = {
@@ -76,7 +81,7 @@ const Registration = () => {
       Cookies.set("userId", response.data.token);
       alert(response.data.message);
       if (response.data.check) {
-      //  navigate("/User");
+        navigate("/User");
       }
     });
   };
@@ -84,76 +89,53 @@ const Registration = () => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on('fromServer-checkUsername', (checkdata) => console.log(checkdata));
-
-
-
-  },[socket])
+    socket.on("fromServer-checkUsername", (checkdata) =>
+      setCheck(checkdata.check)
+    );
+  }, [socket]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: 600,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-      component="form"
-      onSubmit={addData}
-    >
-      <Card
-        sx={{
-          width: 400,
-          height: 500,
-          backgroundColor: "ButtonShadow",
-          display: "flex",
-          justifyContent: "center",
-          p: 2
-        }}
-      >
-        <Box sx={{ width: "60%", p: 4 }}>
+    <Box sx={RegistrationMainBox} component="form" onSubmit={addData}>
+      <Card sx={RegistrationMainCard}>
+        <Box sx={RegistrationInnerBox}>
           <Box>
             <Typography textAlign="center" variant="h4">
               AJ
             </Typography>
             <Typography textAlign="center">Sign up to AJ</Typography>
           </Box>
-          <TextField
-            id="standard-basic"
-            label="Full Name"
-            variant="standard"
-            fullWidth
-            sx={{ mt: 2 }}
-            onChange={(event) => setName(event.target.value)}
-            value={name}
-          />
-          <Box sx={{ mt: 2 }}>
-
-
+          <Box sx={RegistrationTextFieldBox}>
+            <TextField
+              id="standard-basic"
+              label="Full Name"
+              variant="standard"
+              fullWidth
+              onChange={(event) => setName(event.target.value)}
+              value={name}
+            />
+          </Box>
+          <Box sx={RegistrationTextFieldBox}>
             <TextField
               id="my-show-text"
               label="Username"
               variant="standard"
               fullWidth
-
-             onChange={handleUsername}
+              onChange={handleUsername}
               value={userName}
             />
             <Box sx={{ height: 5 }}>
-
-              {
-                check && <InputLabel shrink htmlFor="my-show-text">
-                  <Typography color='error'>
-                    Username taken
-                  </Typography>
+              {check && (
+                <InputLabel shrink htmlFor="my-show-text">
+                  <Typography color="error">Username taken</Typography>
                 </InputLabel>
-              }
+              )}
             </Box>
-
-
           </Box>
-          <FormControl sx={{ mt: 2 }} variant="standard" fullWidth>
+          <FormControl
+            sx={RegistrationTextFieldBox}
+            variant="standard"
+            fullWidth
+          >
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
@@ -176,13 +158,17 @@ const Registration = () => {
               }
             />
           </FormControl>
-          <FormControl sx={{ mt: 2 }} variant="standard" fullWidth>
+          <FormControl
+            sx={RegistrationTextFieldBox}
+            variant="standard"
+            fullWidth
+          >
             <InputLabel htmlFor="standard-adornment-password">
               Re-Password
             </InputLabel>
             <Input
               id="standard-adornment-password"
-              type={showPassword ? "text" : "password"}
+              type={confirmshowPassword ? "text" : "password"}
               fullWidth
               onChange={(event) => setRePassord(event.target.value)}
               value={repassword}
@@ -199,12 +185,17 @@ const Registration = () => {
               }
             />
           </FormControl>
-          <Button sx={{ mt: 3 }} fullWidth variant="contained" type="submit">
-            Next
-          </Button>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-            <Link to='/'>
-              <Button variant="text" >I have an Account</Button>
+
+          <Button
+            style={RegistrationButtonStyle}
+            variant="contained"
+            type="submit"
+            name="Next"
+          />
+
+          <Box sx={RegistrationTextButtonBox}>
+            <Link to="/">
+              <Button variant="text" name="I have an Account" />
             </Link>
           </Box>
         </Box>

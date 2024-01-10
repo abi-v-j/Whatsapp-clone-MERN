@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { socket } from './Socket'
+import React from 'react'
 const App = () => {
   
    return <div>App</div>
