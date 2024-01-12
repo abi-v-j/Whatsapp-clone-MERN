@@ -1,28 +1,77 @@
-import { Box, Card, FormControl, IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
+import {
+  Box,
+  Card,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+} from '@mui/material'
 import React from 'react'
-import { ChatComponentInnerBoxBottom, ChatComponentInnerBoxChat, ChatComponentInnerBoxTop, ChatContainerMainContainer } from '../UserStyle'
+import {
+  ChatComponentChatCard,
+  ChatComponentInnerBoxBottom,
+  ChatComponentInnerBoxChat,
+  ChatComponentInnerBoxTop,
+  ChatComponentTopInnerBoxLeft,
+  ChatComponentTopInnerBoxRight,
+  ChatContainerMainContainer,
+} from '../UserStyle'
 import Navbar from './Navbar'
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from '@mui/icons-material/Send'
 const ChatComponent = () => {
   return (
     <Card sx={ChatContainerMainContainer}>
       <Navbar />
       <Box sx={ChatComponentInnerBoxChat}>
-        <Box sx={ChatComponentInnerBoxTop}>
-
-        </Box>
-        <Box sx={ChatComponentInnerBoxBottom}>
-          <FormControl fullWidth variant="standard">
-            <Input
-              id="standard-adornment-amount"
-              endAdornment={<InputAdornment position="end">
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <OutlinedInput
+            sx={ChatComponentInnerBoxBottom}
+            id="outlined-adornment-amount"
+            endAdornment={
+              <InputAdornment position="start">
                 <IconButton aria-label="delete">
                   <SendIcon />
                 </IconButton>
-
-              </InputAdornment>}
-            />
-          </FormControl>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <Box sx={ChatComponentInnerBoxTop}>
+          <Box sx={ChatComponentTopInnerBoxLeft}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxRight}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxLeft}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxRight}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxLeft}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxRight}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxLeft}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxRight}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxLeft}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxRight}>
+            <Card sx={ChatComponentChatCard}>helo</Card>
+          </Box>
+          <Box sx={ChatComponentTopInnerBoxLeft}>
+            <Card sx={ChatComponentChatCard}>
+              hsafkjgdsakfdslukfgdsafdsfgsdadskfgdakjhgfidtsafuyeftgdsuijgfhjdsftuyewfgdsahjfgdsahjfgdsahjelo
+            </Card>
+          </Box>
         </Box>
       </Box>
     </Card>

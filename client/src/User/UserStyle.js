@@ -5,7 +5,7 @@ export const UserMainAppContainer = {
 
 export const ChatListMainContainer = {
   height: '97vh',
-  width: 450,
+  width: '40vw',
   m: 1,
 }
 
@@ -53,29 +53,28 @@ export const ChatListBodySingleCard = {
 
   '&:hover': {
     backgroundColor: '#e6d4d4', // Change the background color on hover
-    borderRadius: 6
+    borderRadius: 6,
   },
-};
+}
 
 export const ChatListSingleCardInnerTypography = {
-  ml: 3
+  ml: 3,
 }
 
 export const ChatListHeaderSearchBox = {
   height: 31,
   mt: 2.5,
-  ml: 3,
+  mx: 3,
   width: 250,
   display: 'flex',
   justifyContent: 'center',
 }
 
 export const ChatListHeaderMenuButton = {
-  mt: 2.5
+  mt: 2.5,
 }
 
 export const ChatListHeaderSearchTextField = {
-
   width: 250,
   display: 'flex',
   justifyContent: 'center',
@@ -83,9 +82,7 @@ export const ChatListHeaderSearchTextField = {
   border: '1px solid',
   height: 35,
   paddingLeft: '30px',
-
-};
-
+}
 
 export const ChatContainerMainContainer = {
   height: '97vh',
@@ -99,34 +96,77 @@ export const NavbarMainContainerBox = {
   m: 1,
   display: 'flex',
   alignItems: 'center',
-  justifyContent:'space-between',
-  px: 3
+  justifyContent: 'space-between',
+  px: 3,
 }
 
 export const NavbarTypography = {
-  ml: 2
+  ml: 2,
 }
 
 export const NavbarInnerFirstBox = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 }
 
 export const ChatComponentInnerBoxChat = {
-  px:30,
+  display: 'flex',
+  flexDirection: 'column-reverse',
+  px: 25,
+  height: '80vh',
 }
 
-export  const ChatComponentInnerBoxTop = {
-  height:'76vh',
-  m:2,
-  overflowY:'scroll'
+export const ChatComponentInnerBoxTop = {
+  m: 2,
+  height: '70vh',
+  overflowY: 'scroll',
+
+  WebkitOverflowScrolling: 'touch', // For smoother scrolling on iOS devices
+
+  /* Customize the scrollbar */
+  scrollbarWidth: 'thin', // Firefox
+  scrollbarColor: '#888 #f1f1f1', // Firefox
+
+  '&::-webkit-scrollbar': {
+    width: '5px', // Set the width of the scrollbar
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: 'white', // Set the color of the scrollbar thumb
+    borderRadius: '5px', // Set the border radius of the thumb
+  },
+
+  '&::-webkit-scrollbar-track': {
+    backgroundColor: '#f1f1f1', // Set the color of the scrollbar track
+  },
+
+  /* Make the scrollbar visible when scrolling */
+  '&:hover::-webkit-scrollbar-thumb': {
+    backgroundColor: '#cfbbbb', // Change the color on hover
+  },
 }
 
 export const ChatComponentInnerBoxBottom = {
-  height:'6vh',
-  display:'flex',
-  alignItems:'end',
-  border:1,
-  px:3,
-  borderRadius:'15px'
+  borderRadius: 30,
+}
+
+export const ChatComponentTopInnerBoxLeft = {
+  display: 'flex',
+  justifyContent: 'left',
+}
+
+export const ChatComponentTopInnerBoxRight = {
+  display: 'flex',
+  justifyContent: 'right',
+}
+
+export const ChatComponentChatCard = {
+
+  maxWidth: '13vw', // Set a maximum width
+  p: 2,
+  backgroundColor: 'lightblue',
+  mx: 2,
+  borderRadius:'20px',
+  overflowWrap: 'break-word', // or use 'word-wrap: break-word' for older browsers
+
 }
