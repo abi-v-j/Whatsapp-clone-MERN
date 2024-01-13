@@ -1,17 +1,23 @@
-import React from 'react'
-import { Box } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Card } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
-import ChatList from './Components/ChatList'
-import { UserMainAppContainer } from './UserStyle'
+import { ChatListMainContainer, UserMainAppContainer } from './UserStyle'
+import ChatNav from './Components/ChatNav'
+import { SetChatPage } from '../UseContext/SocketContext'
 const App = () => {
+  const [checkChat, setCheckChat] = useState(false)
+
   return (
     <Box sx={UserMainAppContainer}>
-      <ChatList />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <SetChatPage.Provider value={{ setCheckChat, checkChat }}>
+        <Card sx={ChatListMainContainer}>
+          <ChatNav />
+        </Card>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </SetChatPage.Provider>
     </Box>
   )
 }

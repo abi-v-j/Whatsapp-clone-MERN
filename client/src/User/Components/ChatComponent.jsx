@@ -5,6 +5,7 @@ import {
   IconButton,
   InputAdornment,
   OutlinedInput,
+  Typography,
 } from '@mui/material'
 import React from 'react'
 import {
@@ -18,7 +19,9 @@ import {
 } from '../UserStyle'
 import Navbar from './Navbar'
 import SendIcon from '@mui/icons-material/Send'
+
 const ChatComponent = () => {
+
   return (
     <Card sx={ChatContainerMainContainer}>
       <Navbar />
@@ -69,7 +72,10 @@ const ChatComponent = () => {
           </Box>
           <Box sx={ChatComponentTopInnerBoxLeft}>
             <Card sx={ChatComponentChatCard}>
-              hsafkjgdsakfdslukfgdsafdsfgsdadskfgdakjhgfidtsafuyeftgdsuijgfhjdsftuyewfgdsahjfgdsahjfgdsahjelo
+              <Typography>
+
+                hsafkjgdsakfdslukfgdsafdsfgsdadskfgdakjhgfidtsafuyeftgdsuijgfhjdsftuyewfgdsahjfgdsahjfgdsahjelo
+              </Typography>
             </Card>
           </Box>
         </Box>

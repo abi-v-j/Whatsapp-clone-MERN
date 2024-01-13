@@ -5,14 +5,14 @@ export const UserMainAppContainer = {
 
 export const ChatListMainContainer = {
   height: '97vh',
-  width: '40vw',
+  width: '25vw',
   m: 1,
 }
 
 export const ChatListHeaderBox = {
   height: '10vh',
   p: 2,
-  mb: 4,
+  mb: 2,
   display: 'flex',
 }
 export const ChatListBodyBox = {
@@ -47,14 +47,20 @@ export const ChatListBodySingleCard = {
   height: '10vh',
   display: 'flex',
   alignItems: 'center',
+  justifyContent:'space-between',
   borderRadius: 6,
   px: 2,
-  transition: 'background-color 0.6s ease', // Add a smooth transition effect
+  transition: 'background-color 0.4s ease', // Add a smooth transition effect
 
   '&:hover': {
     backgroundColor: '#e6d4d4', // Change the background color on hover
     borderRadius: 6,
   },
+}
+
+export const ChatListBodySingleCardInnerBox = {
+  display:'flex',
+  alignItems:'center'
 }
 
 export const ChatListSingleCardInnerTypography = {
@@ -86,7 +92,7 @@ export const ChatListHeaderSearchTextField = {
 
 export const ChatContainerMainContainer = {
   height: '97vh',
-  width: '100%',
+  width: '75vw',
   m: 1,
 }
 
@@ -168,5 +174,14 @@ export const ChatComponentChatCard = {
   mx: 2,
   borderRadius:'20px',
   overflowWrap: 'break-word', // or use 'word-wrap: break-word' for older browsers
+
+}
+
+
+
+
+export const SearchTimeTransitionButton = {
+  transition: '0.6s ease', // Add a smooth transition effect
+  transitionDelay: '0.2s', // Add a delay of 0.2 seconds (you can adjust this value)
 
 }
