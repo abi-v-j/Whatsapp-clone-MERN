@@ -5,16 +5,29 @@ import {
   ChatListBodySingleCardInnerBox,
   ChatListSingleCardInnerTypography,
 } from '../UserStyle'
-import {SetChatPage} from '../../UseContext/SocketContext'
-
+import { SetChatPage, SetSocket } from '../../UseContext/SocketContext'
+import Cookies from 'js-cookie'
 
 const ChatSingleList = ({ props }) => {
-  const {setCheckChat } = useContext(SetChatPage)
-  const ChangeChatHandle = () => {
+  const { socket } = useContext(SetSocket)
+
+  const { setCheckChat } = useContext(SetChatPage)
+  const ChangeChatHandle = (Id) => {
+    const Uid = Cookies.get('userId')
+    const data = {
+      Id,
+      Uid,
+    }
+
+    socket.emit('toServer-friends', { data })
+
     setCheckChat(true)
   }
   return (
-    <Box sx={ChatListBodySingleCard}  onClick={ChangeChatHandle}>
+    <Box
+      sx={ChatListBodySingleCard}
+      onClick={() => ChangeChatHandle(props._id)}
+    >
       <Box sx={ChatListBodySingleCardInnerBox}>
         <Avatar />
         <Box sx={ChatListSingleCardInnerTypography}>
