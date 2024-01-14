@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import moment from "moment-timezone";
-import { createAdapter } from '@socket.io/mongo-adapter';
 
 const chatSchema = new mongoose.Schema({
   dateTime: {
@@ -18,17 +17,6 @@ const chatSchema = new mongoose.Schema({
   sessionId:{
     type:String
   },
-  image:{
-    type:String
-  },
-  video:{
-    type:String
-  },
-  pdf:{
-    type:String
-  }
- 
-
 });
 
 // Pre-save middleware to convert the date to IST before saving to the database
@@ -37,7 +25,6 @@ chatSchema.pre("save", function (next) {
   next();
 });
 
-io.adapter(createAdapter(chatSchema));
 
 
 export default  mongoose.model('chat', chatSchema);

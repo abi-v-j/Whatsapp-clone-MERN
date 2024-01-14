@@ -1,8 +1,7 @@
-import { Box } from '@mui/material'
+import { Avatar, Box, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import { ChatListBodyBox } from '../UserStyle'
+import { ChatListBodyBox, ChatListBodySingleCard, ChatListBodySingleCardInnerBox, ChatListSingleCardInnerTypography } from '../UserStyle'
 import { SetSocket } from '../../UseContext/SocketContext'
-import ChatSingleList from './ChatSingleList'
 
 const SearchComponent = () => {
   const { socket } = useContext(SetSocket)
@@ -18,7 +17,14 @@ const SearchComponent = () => {
   return (
     <Box sx={ChatListBodyBox}>
       {userList.map((list, key) => (
-        <ChatSingleList props={list} key={key} />
+        <Box sx={ChatListBodySingleCard} onClick={() => ChangeChatHandle(list._id)} key={key}>
+          <Box sx={ChatListBodySingleCardInnerBox}>
+            <Avatar />
+            <Box sx={ChatListSingleCardInnerTypography}>
+              <Typography>{list.name}</Typography>
+            </Box>
+          </Box>
+        </Box>
       ))}
     </Box>
   )

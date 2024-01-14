@@ -16,23 +16,26 @@ export default class TypingController extends BaseController {
       console.log('UserOne:', userOne)
       console.log('UserTwo:', userTwo)
 
-      const existingFriendship = await Friends.findOne({
+      let friendsData = await Friends.findOne({
         $or: [
           { UserOne: userOne, UserTwo: userTwo },
           { UserOne: userTwo, UserTwo: userOne },
         ],
       })
 
-      if (existingFriendship) {
-        console.log('Friendship already exists:', existingFriendship)
+      if (friendsData) {
+        console.log('Friendship already exists:', friendsData)
       } else {
-        const newFriendship = new Friends({
+        friendsData = new Friends({
           UserOne: userOne,
           UserTwo: userTwo,
         })
-        await newFriendship.save()
-        console.log('Friendship saved:', newFriendship)
+        await friendsData.save()
+        console.log('Friendship saved:', friendsData)
       }
+
+      this.socket.join(friendsData._id)
+
 
       // this.socket.emit("fromServer-Friends", { data });
     } catch (error) {

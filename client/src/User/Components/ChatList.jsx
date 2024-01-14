@@ -1,26 +1,17 @@
-import {  Box } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
-import {
-  ChatListBodyBox,
 
-} from '../UserStyle'
+import { ChatListBodyBox } from '../UserStyle'
 import ChatSingleList from './ChatSingleList'
 
-const ChatList = () => {
- 
-const props =[]
+const ChatList = ({ props }) => {
+  console.log(props)
+
   return (
     <Box sx={ChatListBodyBox}>
-     
-     <ChatSingleList props={props} />
-     <ChatSingleList props={props} />
-     <ChatSingleList props={props} />
-     <ChatSingleList props={props} />
-     <ChatSingleList props={props} />
-     <ChatSingleList props={props} />
-     <ChatSingleList props={props} />
-     
-
+      {props.map((props, key) => (
+        <ChatSingleList props={props} key={key} />
+      ))}
     </Box>
   )
 }

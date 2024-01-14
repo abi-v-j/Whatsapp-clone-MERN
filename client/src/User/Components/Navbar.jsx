@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { NavbarInnerFirstBox, NavbarMainContainerBox, NavbarTypography } from '../UserStyle'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const Navbar = () => {
+const Navbar = ({props}) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -20,7 +20,7 @@ const Navbar = () => {
         <Card sx={NavbarMainContainerBox}>
             <Box sx={NavbarInnerFirstBox}>
                 <Avatar />
-                <Typography sx={NavbarTypography}>Hello</Typography>
+                <Typography sx={NavbarTypography}>{props.name}</Typography>
             </Box>
             <Box>
                 <IconButton aria-label="delete" onClick={handleClick}>

@@ -6,6 +6,7 @@ export default class TypingController extends BaseController {
         try {
             const regex = new RegExp(`^${userName}`, 'i'); // Case-insensitive regex
             const usersData = await User.find({ userName: { $regex: regex } });
+
             if (userName.length === 0) {
                 this.socket.emit("fromServer-searchUser", { usersData: [] });
             } else {

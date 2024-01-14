@@ -6,7 +6,7 @@ import { ChatListMainContainer, UserMainAppContainer } from './UserStyle'
 import ChatNav from './Components/ChatNav'
 import { SetChatPage } from '../UseContext/SocketContext'
 const App = () => {
-  const [checkChat, setCheckChat] = useState(false)
+  const [checkChat, setCheckChat] = useState(null)
 
   return (
     <Box sx={UserMainAppContainer}>

@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Fragment>
       {
-        checkChat &&  <ChatComponent/>
+        checkChat &&  <ChatComponent props={checkChat}/>
 
       }
     </Fragment>

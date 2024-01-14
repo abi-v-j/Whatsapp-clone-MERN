@@ -9,6 +9,7 @@ import { SetChatPage, SetSocket } from '../../UseContext/SocketContext'
 import Cookies from 'js-cookie'
 
 const ChatSingleList = ({ props }) => {
+  const { _id, name } = props.friend ? props.friend : props
   const { socket } = useContext(SetSocket)
 
   const { setCheckChat } = useContext(SetChatPage)
@@ -21,17 +22,14 @@ const ChatSingleList = ({ props }) => {
 
     socket.emit('toServer-friends', { data })
 
-    setCheckChat(true)
+    setCheckChat(props)
   }
   return (
-    <Box
-      sx={ChatListBodySingleCard}
-      onClick={() => ChangeChatHandle(props._id)}
-    >
+    <Box sx={ChatListBodySingleCard} onClick={() => ChangeChatHandle(_id)}>
       <Box sx={ChatListBodySingleCardInnerBox}>
         <Avatar />
         <Box sx={ChatListSingleCardInnerTypography}>
-          <Typography>{props.name}</Typography>
+          <Typography>{name}</Typography>
         </Box>
       </Box>
     </Box>

@@ -1,5 +1,5 @@
 import { Box, Card, IconButton, Popover, Typography } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 import {
@@ -13,12 +13,15 @@ import ChatList from './ChatList'
 import SearchComponent from './SearchComponent'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { SetSocket } from '../../UseContext/SocketContext'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const ChatNav = () => {
   const { socket } = useContext(SetSocket)
 
   const [anchorEl, setAnchorEl] = useState(false)
   const [checkSearch, setCheckSearch] = useState(false)
+  const [friends, setFriends] = useState([])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -48,6 +51,20 @@ const ChatNav = () => {
     onClick: checkSearch ? SearchChangeHandleClose : handleClick,
     sx: SearchTimeTransitionButton,
   }
+
+  const fetchData = () => {
+    const Id = Cookies.get('userId')
+
+    axios.get(`http://localhost:5000/chatList/${Id}`).then((response) => {
+      const data = response.data
+      console.log(data)
+      setFriends(data)
+    })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -83,11 +100,7 @@ const ChatNav = () => {
           />
         </Box>
       </Card>
-      {checkSearch ? (
-        <SearchComponent />
-      ) : (
-        <ChatList />
-      )}
+      {checkSearch ? <SearchComponent /> : <ChatList props={friends}  />}
     </>
   )
 }
